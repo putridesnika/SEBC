@@ -10,7 +10,7 @@
  default_realm = EXPECC.COM
  dns_lookup_realm = false
  dns_lookup_kdc = false
- ticket_lifetime = 24h
+ ticket_lifetime = 12h
  renew_lifetime = 7d
  forwardable = true
 
