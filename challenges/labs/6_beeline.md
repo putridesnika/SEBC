@@ -1,82 +1,6 @@
 ## Beeline
 
-```
-[root@ip-172-30-1-171 188-hive-HIVESERVER2]# kinit -kt hive.keytab hive/ip-172-30-1-171.ap-southeast-1.compute.internal@DODDYS.SG
-[root@ip-172-30-1-171 188-hive-HIVESERVER2]# beeline
-Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=512M; support was removed in 8.0
-Java HotSpot(TM) 64-Bit Server VM warning: Using incremental CMS is deprecated and will likely be removed in a future release
-Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=512M; support was removed in 8.0
-Beeline version 1.1.0-cdh5.13.3 by Apache Hive
-beeline> !connect jdbc:hive2://localhost:10000/default;principal=hive/ip-172-30-1-171.ap-southeast-1.compute.internal@DODDYS.SG
-scan complete in 1ms
-Connecting to jdbc:hive2://localhost:10000/default;principal=hive/ip-172-30-1-171.ap-southeast-1.compute.internal@DODDYS.SG
-Connected to: Apache Hive (version 1.1.0-cdh5.13.3)
-Driver: Hive JDBC (version 1.1.0-cdh5.13.3)
-Transaction isolation: TRANSACTION_REPEATABLE_READ
-0: jdbc:hive2://localhost:10000/default> CREATE ROLE HttpViewer;
-INFO  : Compiling command(queryId=hive_20180517085050_89f06796-f8e7-4454-be53-9b0fdd38c809): CREATE ROLE HttpViewer
-INFO  : Semantic Analysis Completed
-INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
-INFO  : Completed compiling command(queryId=hive_20180517085050_89f06796-f8e7-4454-be53-9b0fdd38c809); Time taken: 0.588 seconds
-INFO  : Executing command(queryId=hive_20180517085050_89f06796-f8e7-4454-be53-9b0fdd38c809): CREATE ROLE HttpViewer
-INFO  : Starting task [Stage-0:DDL] in serial mode
-INFO  : Completed executing command(queryId=hive_20180517085050_89f06796-f8e7-4454-be53-9b0fdd38c809); Time taken: 0.207 seconds
-INFO  : OK
-No rows affected (2.147 seconds)
-0: jdbc:hive2://localhost:10000/default> GRANT SELECT ON default.web_logs TO ROLE HttpViewer;
-INFO  : Compiling command(queryId=hive_20180517085151_32dc23d7-432c-4a04-b38f-df965ecc4fde): GRANT SELECT ON default.web_logs TO ROLE HttpViewer
-INFO  : Semantic Analysis Completed
-INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
-INFO  : Completed compiling command(queryId=hive_20180517085151_32dc23d7-432c-4a04-b38f-df965ecc4fde); Time taken: 0.1 seconds
-INFO  : Executing command(queryId=hive_20180517085151_32dc23d7-432c-4a04-b38f-df965ecc4fde): GRANT SELECT ON default.web_logs TO ROLE HttpViewer
-INFO  : Starting task [Stage-0:DDL] in serial mode
-INFO  : Completed executing command(queryId=hive_20180517085151_32dc23d7-432c-4a04-b38f-df965ecc4fde); Time taken: 0.074 seconds
-INFO  : OK
-No rows affected (0.186 seconds)
-0: jdbc:hive2://localhost:10000/default>
-0: jdbc:hive2://localhost:10000/default> GRANT ROLE HttpViewer TO GROUP rangers;
-INFO  : Compiling command(queryId=hive_20180517085151_c226a5dc-84fc-444d-ab37-95c9b1681f8f): GRANT ROLE HttpViewer TO GROUP rangers
-INFO  : Semantic Analysis Completed
-INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
-INFO  : Completed compiling command(queryId=hive_20180517085151_c226a5dc-84fc-444d-ab37-95c9b1681f8f); Time taken: 0.07 seconds
-INFO  : Executing command(queryId=hive_20180517085151_c226a5dc-84fc-444d-ab37-95c9b1681f8f): GRANT ROLE HttpViewer TO GROUP rangers
-INFO  : Starting task [Stage-0:DDL] in serial mode
-INFO  : Completed executing command(queryId=hive_20180517085151_c226a5dc-84fc-444d-ab37-95c9b1681f8f); Time taken: 0.046 seconds
-INFO  : OK
-No rows affected (0.131 seconds)
-0: jdbc:hive2://localhost:10000/default> CREATE ROLE ServiceViewer;
-INFO  : Compiling command(queryId=hive_20180517085151_63b07859-4a51-4f16-bc02-e12bec02fa9b): CREATE ROLE ServiceViewer
-INFO  : Semantic Analysis Completed
-INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
-INFO  : Completed compiling command(queryId=hive_20180517085151_63b07859-4a51-4f16-bc02-e12bec02fa9b); Time taken: 0.062 seconds
-INFO  : Executing command(queryId=hive_20180517085151_63b07859-4a51-4f16-bc02-e12bec02fa9b): CREATE ROLE ServiceViewer
-INFO  : Starting task [Stage-0:DDL] in serial mode
-INFO  : Completed executing command(queryId=hive_20180517085151_63b07859-4a51-4f16-bc02-e12bec02fa9b); Time taken: 0.009 seconds
-INFO  : OK
-No rows affected (0.083 seconds)
-0: jdbc:hive2://localhost:10000/default> GRANT SELECT ON default.customer TO ROLE ServiceViewer;
-INFO  : Compiling command(queryId=hive_20180517085151_135abf76-783f-4f8e-86e3-e50c157d9232): GRANT SELECT ON default.customer TO ROLE ServiceViewer
-INFO  : Semantic Analysis Completed
-INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
-INFO  : Completed compiling command(queryId=hive_20180517085151_135abf76-783f-4f8e-86e3-e50c157d9232); Time taken: 0.078 seconds
-INFO  : Executing command(queryId=hive_20180517085151_135abf76-783f-4f8e-86e3-e50c157d9232): GRANT SELECT ON default.customer TO ROLE ServiceViewer
-INFO  : Starting task [Stage-0:DDL] in serial mode
-INFO  : Completed executing command(queryId=hive_20180517085151_135abf76-783f-4f8e-86e3-e50c157d9232); Time taken: 0.011 seconds
-INFO  : OK
-No rows affected (0.099 seconds)
-0: jdbc:hive2://localhost:10000/default> GRANT ROLE HttpViewer TO GROUP astros;
-INFO  : Compiling command(queryId=hive_20180517085151_0d702e55-b49b-4999-9ca7-411b1a538f75): GRANT ROLE HttpViewer TO GROUP astros
-INFO  : Semantic Analysis Completed
-INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
-INFO  : Completed compiling command(queryId=hive_20180517085151_0d702e55-b49b-4999-9ca7-411b1a538f75); Time taken: 0.059 seconds
-INFO  : Executing command(queryId=hive_20180517085151_0d702e55-b49b-4999-9ca7-411b1a538f75): GRANT ROLE HttpViewer TO GROUP astros
-INFO  : Starting task [Stage-0:DDL] in serial mode
-INFO  : Completed executing command(queryId=hive_20180517085151_0d702e55-b49b-4999-9ca7-411b1a538f75); Time taken: 0.009 seconds
-INFO  : OK
-No rows affected (0.085 seconds)
-0: jdbc:hive2://localhost:10000/default>
 
-```
 
 ```
 1,000 rows selected (1.638 seconds)
@@ -104,9 +28,10 @@ INFO  : OK
 +----------------------+---------------+-----------------+----------------+---------------------+----------------+------------------------+-------------------------+------------------------+-------------------------+---------------------+---------------------+----------------------+------------------+---------------------+--------------------+--------------------+------------------+----------------------------------------------------+-----------------------+----------------------------------------------------+------------------+-----------------------+----------------------------------------------------+----------------------------------------------------+----------------------------------------------------+----------------------------+---------------------------------------+----------------+--+
 10 rows selected (0.255 seconds)
 0: jdbc:hive2://localhost:10000/default> exit
-. . . . . . . . . . . . . . . . . . . .> [root@ip-172-30-1-171 188-hive-HIVESERVER2]# kinit bertran
-kinit: Client 'bertran@DODDYS.SG' not found in Kerberos database while getting initial credentials
-[root@ip-172-30-1-171 188-hive-HIVESERVER2]# kinit beltran
+
+
+
+. . . . . . . . . . . . . . . . . . .> [root@ip-172-30-1-171 188-hive-HIVESERVER2]# kinit beltran
 Password for beltran@DODDYS.SG:
 [root@ip-172-30-1-171 188-hive-HIVESERVER2]# beeline
 Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=512M; support was removed in 8.0
@@ -114,15 +39,33 @@ Java HotSpot(TM) 64-Bit Server VM warning: Using incremental CMS is deprecated a
 Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=512M; support was removed in 8.0
 Beeline version 1.1.0-cdh5.13.3 by Apache Hive
 beeline> !connect jdbc:hive2://localhost:10000/default;principal=hive/ip-172-30-1-171.ap-southeast-1.compute.internal@DODDYS.SG
-scan complete in 2ms
+scan complete in 1ms
 Connecting to jdbc:hive2://localhost:10000/default;principal=hive/ip-172-30-1-171.ap-southeast-1.compute.internal@DODDYS.SG
 Connected to: Apache Hive (version 1.1.0-cdh5.13.3)
 Driver: Hive JDBC (version 1.1.0-cdh5.13.3)
 Transaction isolation: TRANSACTION_REPEATABLE_READ
+0: jdbc:hive2://localhost:10000/default>
 0: jdbc:hive2://localhost:10000/default> select * from customers limit 10;
-Error: Error while compiling statement: FAILED: SemanticException No valid privileges
- User beltran does not have privileges for QUERY
- The required privileges: Server=server1->Db=default->Table=customers->Column=addresses->action=select; (state=42000,code=40000)
-
+INFO  : Compiling command(queryId=hive_20180517090404_1021b5c0-e427-4f89-8eab-1fbb8390397a): select * from customers limit 10
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:customers.id, type:int, comment:null), FieldSchema(name:customers.name, type:string, comment:null), FieldSchema(name:customers.email_preferences, type:struct<email_format:string,frequency:string,categories:struct<promos:boolean,surveys:boolean>>, comment:null), FieldSchema(name:customers.addresses, type:map<string,struct<street_1:string,street_2:string,city:string,state:string,zip_code:string>>, comment:null), FieldSchema(name:customers.orders, type:array<struct<order_id:string,order_date:string,items:array<struct<product_id:int,sku:string,name:string,price:double,qty:int>>>>, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20180517090404_1021b5c0-e427-4f89-8eab-1fbb8390397a); Time taken: 0.163 seconds
+INFO  : Executing command(queryId=hive_20180517090404_1021b5c0-e427-4f89-8eab-1fbb8390397a): select * from customers limit 10
+INFO  : Completed executing command(queryId=hive_20180517090404_1021b5c0-e427-4f89-8eab-1fbb8390397a); Time taken: 0.001 seconds
+INFO  : OK
++---------------+----------------------+----------------------------------------------------+----------------------------------------------------+----------------------------------------------------+--+
+| customers.id  |    customers.name    |            customers.email_preferences             |                customers.addresses                 |                  customers.orders                  |
++---------------+----------------------+----------------------------------------------------+----------------------------------------------------+----------------------------------------------------+--+
+| 75012         | Dorothy Wilk         | {"email_format":"html","frequency":"weekly","categories":{"promos":true,"surveys":false}} | {"shipping":{"street_1":"1102 Sussex Court","street_2":"","city":"Waco","state":"TX","zip_code":"76710"},"billing":{"street_1":"1102 Sussex Court","street_2":"","city":"Waco","state":"TX","zip_code":"76710"}} | [{"order_id":"4056711","order_date":"2015-05-01T14:22:25-04:00","items":[{"product_id":4056711,"sku":"G034-531-4","name":"Evening Clutch","price":779.0,"qty":1},{"product_id":4064017,"sku":"P557-219-2","name":"Large Tassel Pouch","price":139.0,"qty":1}]},{"order_id":"J882C2","order_date":"2015-06-10T11:00:00-05:00","items":[{"product_id":3269083,"sku":"K836-971-4","name":"Flameless Candle","price":48.0,"qty":2}]}] |
+| 17254         | Martin Johnson       | {"email_format":"text","frequency":"daily","categories":{"promos":true,"surveys":true}} | {"shipping":{"street_1":"158 Jadewood Drive","street_2":"Apt 2","city":"Gary","state":"IN","zip_code":"46403"},"billing":{"street_1":"4169 Oakwood Lane","street_2":"","city":"Gary","state":"IN","zip_code":"46403"}} | [{"order_id":"I72T39","order_date":"2015-03-14T11:00:00-05:00","items":[{"product_id":4112183,"sku":"T513-091-2","name":"Tea for One","price":18.0,"qty":1}]}] |
+| 12532         | Melvin Garcia        | {"email_format":"html","frequency":"daily","categories":{"promos":true,"surveys":false}} | {"shipping":{"street_1":"1740 Hawks Nest Lane","street_2":"","city":"Waco","state":"TX","zip_code":"76710"},"billing":{"street_1":"1740 Hawks Nest Lane","street_2":"","city":"Waco","state":"TX","zip_code":"76710"}} | [{"order_id":"PB6268","order_date":"2015-02-11T14:22:25-04:00","items":[{"product_id":2193374,"sku":"B117-910-4","name":"Towel Set","price":17.0,"qty":4}]},{"order_id":"B8623C","order_date":"2015-04-21T11:00:00-05:00","items":[{"product_id":3912425,"sku":"C263-523-4","name":"Maple Dining Table","price":1329.0,"qty":1},{"product_id":794413,"sku":"O427-103-3","name":"Paloma Accent Table","price":199.0,"qty":1},{"product_id":4081337,"sku":"M293-461-2","name":"Trunk Coffee Table","price":979.0,"qty":1}]},{"order_id":"R9S838","order_date":"2015-07-09T11:00:00-05:00","items":[{"product_id":2102769,"sku":"F482-726-7","name":"Simple Scallop Table","price":639.0,"qty":2}]}] |
+| 42632         | Raymond S. Vestal    | {"email_format":"html","frequency":"monthly","categories":{"promos":true,"surveys":false}} | {"billing":{"street_1":"2913 Chestnut Street","street_2":"","city":"Menasha","state":"WI","zip_code":"54952"},"shipping":{"street_1":"2913 Chestnut Street","street_2":"","city":"Menasha","state":"WI","zip_code":"54952"}} | [{"order_id":"HS3124","order_date":"2015-10-14T00:00:00","items":[{"product_id":5246721,"sku":"C473-757-3","name":"Murano Glass Vase","price":486.0,"qty":4}]},{"order_id":"BS5902","order_date":"2014-10-23T00:00:00","items":[{"product_id":7274900,"sku":"O754-922-2","name":"Circle Pillows","price":868.0,"qty":3},{"product_id":9705047,"sku":"N384-252-0","name":"Frame Arch Mirror","price":97.0,"qty":2}]}] |
+| 77913         | Betty J. Giambrone   | {"email_format":"text","frequency":"monthly","categories":{"promos":false,"surveys":false}} | {"billing":{"street_1":"3303 John Calvin Drive","street_2":"","city":"Jackson","state":"TN","zip_code":"38301"},"shipping":{"street_1":"3303 John Calvin Drive","street_2":"","city":"Jackson","state":"TN","zip_code":"38301"}} | [{"order_id":"DN8815","order_date":"2015-09-07T00:00:00","items":[{"product_id":7143683,"sku":"J877-538-7","name":"Task Lamp","price":330.0,"qty":4}]},{"order_id":"XR2771","order_date":"2015-12-25T00:00:00","items":[{"product_id":2228511,"sku":"A169-703-4","name":"Danish Teak Desk","price":938.0,"qty":2},{"product_id":4326580,"sku":"M594-201-2","name":"Wisteria Glass Plates","price":813.0,"qty":3}]}] |
+| 38807         | Rebecca T. Johnson   | {"email_format":"html","frequency":"monthly","categories":{"promos":true,"surveys":false}} | {"billing":{"street_1":"1116 Junkin Avenue","street_2":"","city":"Osceola","state":"IN","zip_code":"46561"},"shipping":{"street_1":"1116 Junkin Avenue","street_2":"","city":"Osceola","state":"IN","zip_code":"46561"}} | [{"order_id":"CS3066","order_date":"2015-08-18T00:00:00","items":[{"product_id":3897015,"sku":"M940-177-9","name":"Chrome Chairs","price":923.0,"qty":3}]},{"order_id":"FT8110","order_date":"2014-11-24T00:00:00","items":[{"product_id":7247633,"sku":"M939-857-6","name":"Leather & Glass Side Tables","price":97.0,"qty":1},{"product_id":9205678,"sku":"P281-172-5","name":"Lotus Sconce","price":956.0,"qty":3}]}] |
+| 71843         | David B. Allison     | {"email_format":"text","frequency":"daily","categories":{"promos":true,"surveys":false}} | {"billing":{"street_1":"3947 Heavner Avenue","street_2":"","city":"Jackson","state":"TN","zip_code":"38301"},"shipping":{"street_1":"3947 Heavner Avenue","street_2":"","city":"Jackson","state":"TN","zip_code":"38301"}} | [{"order_id":"QY5539","order_date":"2014-08-19T00:00:00","items":[{"product_id":3599097,"sku":"S793-881-9","name":"Spanner-Style Armchairs","price":654.0,"qty":2}]},{"order_id":"MD4734","order_date":"2014-05-03T00:00:00","items":[{"product_id":7486243,"sku":"V522-942-7","name":"Blue Enamel Bowls","price":616.0,"qty":2},{"product_id":5274287,"sku":"W887-894-6","name":"Modernist Gold Mirror","price":838.0,"qty":4}]}] |
+| 67099         | Jay N. Weaver        | {"email_format":"text","frequency":"daily","categories":{"promos":false,"surveys":false}} | {"billing":{"street_1":"3286 Windmill Road","street_2":"","city":"Waco","state":"TX","zip_code":"76710"},"shipping":{"street_1":"3286 Windmill Road","street_2":"","city":"Waco","state":"TX","zip_code":"76710"}} | [{"order_id":"QG1917","order_date":"2014-03-22T00:00:00","items":[{"product_id":9410729,"sku":"N838-463-1","name":"Oak Frame Mirror","price":536.0,"qty":2}]},{"order_id":"EJ8240","order_date":"2015-11-26T00:00:00","items":[{"product_id":9619115,"sku":"U868-872-7","name":"Lumbar Pillow","price":409.0,"qty":4},{"product_id":3574969,"sku":"F621-723-0","name":"Ruby & Diamond Cocktail Ring","price":792.0,"qty":1}]}] |
+| 83510         | Carol B. Houser      | {"email_format":"html","frequency":"never","categories":{"promos":false,"surveys":false}} | {"billing":{"street_1":"1396 Alexander Drive","street_2":"","city":"Chicago","state":"IL","zip_code":"60601"},"shipping":{"street_1":"1396 Alexander Drive","street_2":"","city":"Chicago","state":"IL","zip_code":"60601"}} | [{"order_id":"AK6498","order_date":"2014-05-08T00:00:00","items":[{"product_id":5212135,"sku":"T483-510-1","name":"Brass Modernist Chandelier","price":650.0,"qty":3}]},{"order_id":"AJ5926","order_date":"2014-03-22T00:00:00","items":[{"product_id":2526785,"sku":"L728-742-4","name":"Hand-Stitched Pillow","price":534.0,"qty":2},{"product_id":3410597,"sku":"A945-359-0","name":"Lavendar Ceramic Lamps","price":60.0,"qty":3}]}] |
+| 48072         | Octaviana Guiterrez  | {"email_format":"text","frequency":"never","categories":{"promos":false,"surveys":true}} | {"billing":{"street_1":"4388 Denton Street","street_2":"","city":"Providence","state":"RI","zip_code":"02906"},"shipping":{"street_1":"4388 Denton Street","street_2":"","city":"Providence","state":"RI","zip_code":"02906"}} | [{"order_id":"ES2661","order_date":"2014-06-07T00:00:00","items":[{"product_id":9242071,"sku":"I750-713-5","name":"Kiri Console","price":48.0,"qty":2}]},{"order_id":"LR7766","order_date":"2014-01-11T00:00:00","items":[{"product_id":9177858,"sku":"E977-380-2","name":"Lacie Barstool","price":838.0,"qty":3},{"product_id":2257962,"sku":"U421-880-0","name":"Catalina Bistro Barstools","price":329.0,"qty":1}]}] |
++---------------+----------------------+----------------------------------------------------+----------------------------------------------------+----------------------------------------------------+--+
+10 rows selected (0.707 seconds)
  ```
- 
