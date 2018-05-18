@@ -18,6 +18,8 @@ ip-172-30-1-50.ap-southeast-1.compute.internal
 ip-172-30-1-59.ap-southeast-1.compute.internal
 ip-172-30-1-249.ap-southeast-1.compute.internal
 ip-172-30-1-245.ap-southeast-1.compute.internal
+
+```
 ```
 [ec2-user@ip-172-30-1-139 ~]$ uptime
  02:42:18 up 7 min,  2 users,  load average: 0.00, 0.04, 0.05
