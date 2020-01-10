@@ -1,0 +1,15 @@
+## Configur Cloudera Manager
+
+```
+[cloudera-manager]
+name=Cloudera Manager 6.3.0
+baseurl=https://archive.cloudera.com/cm6/6.3.0/redhat7/yum/
+gpgkey=https://archive.cloudera.com/cm6/6.3.0/redhat7/yum/RPM-GPG-KEY-cloudera
+gpgcheck=1
+enabled=1
+autorefresh=0
+type=rpm-md
+coudera-manager.repo (END)
+
+
+```
